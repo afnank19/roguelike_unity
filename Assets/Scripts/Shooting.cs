@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public class Shooting : MonoBehaviour
 {
@@ -12,10 +13,11 @@ public class Shooting : MonoBehaviour
     public bool canFire;
     private float timer;
     public float timeBwFiring;
+    private CinemachineImpulseSource impulseSource;
     // Start is called before the first frame update
     void Start()
     {
-        
+        impulseSource = GetComponent<CinemachineImpulseSource>();
     }
 
     // Update is called once per frame
@@ -39,6 +41,7 @@ public class Shooting : MonoBehaviour
 
         if(Input.GetMouseButton(0) && canFire)
         {
+            CameraShakeManager.instance.CameraShake(impulseSource);
             canFire = false;
             Instantiate(bullet, bulletTransform.position, Quaternion.identity);
         }

@@ -2,42 +2,39 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using Cinemachine;
 public class PlayerScript : MonoBehaviour
 {
     public Rigidbody2D player_rb;
     public float moveSpeed = 5f;
     Vector2 movement;
     public Camera cam;
-
     public SpriteRenderer player_sr;
-    
-   public GameObject enemy;
-   public Enemy enemyRef;
+    public GameObject enemy;
+    public Enemy enemyRef;
+    int health = 10;
+    bool hit = false;
+    bool canAttack = true;
+    Vector2 knockback;
+    private CinemachineImpulseSource impulseSource;
 
-   int health = 10;
-   bool hit = false;
-   bool canAttack = true;
-   Vector2 knockback;
     void Start()
     {
+        impulseSource = GetComponent<CinemachineImpulseSource>();
         //temporary for testing
 
         Instantiate(enemy, new Vector3(3.81f, 1.67f, 0), Quaternion.identity);
     }
 
-    // Update is called once per frame
     void Update()
     {
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
 
         if(movement.x < 0){
-            //transform.localScale = new Vector3(-1, 1, 1);
             player_sr.flipX = true;
             
         }else if(movement.x > 0){
-            //transform.localScale = new Vector3(1, 1, 1);
             player_sr.flipX = false;
         }
 
@@ -55,12 +52,10 @@ public class PlayerScript : MonoBehaviour
     }
 
     void FixedUpdate(){
-        // if(movement.x == 0 && movement.y == 0)
-        //     return;
         if(hit){
             print("In player Normal: "+ knockback);
-            player_rb.AddForce(knockback * 0.7f, ForceMode2D.Impulse);
-            Invoke("hitForceDelay", 0.2f);
+            player_rb.AddForce(knockback * 1.15f, ForceMode2D.Impulse);
+            Invoke("hitForceDelay", 0.15f);
             
         }else if(!hit){
             player_rb.velocity = new Vector2(movement.x * moveSpeed, movement.y * moveSpeed);
@@ -79,24 +74,29 @@ public class PlayerScript : MonoBehaviour
     }
     void hitForceDelay(){
         hit = false;
-        canAttack = true;
+
     }
     void attackDelay(){
-
+        canAttack = true;
     }
-
+    void DamageHealth(){
+        health -= 5;
+    }
+    void OnTriggerEnter2D(){
+        CameraShakeManager.instance.CameraShake(impulseSource);
+    }
     void OnTriggerStay2D(Collider2D coll){
         if(canAttack){
-            health -= 5;
-            Invoke("attackDelay", 1f);
+            DamageHealth();
+            canAttack = false;
+            Invoke("attackDelay", 1);
         }
         
-
+        //Calculates the direction for the knockback
         Vector2 dir = (coll.transform.position - transform.position).normalized;
 
         knockback = -dir;
 
         hit = true;
-        //player_rb.AddForce(-transform.right * 10f, ForceMode2D.Impulse);
    }
 }

@@ -13,14 +13,13 @@ public class Enemy : MonoBehaviour
     public int health = 10;
 
     bool hit = false;
-    // Start is called before the first frame update
+
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
-       //print (player.transform.position);
     }
 
-    // Update is called once per frame
+
     void Update()
     {
 
@@ -30,9 +29,9 @@ public class Enemy : MonoBehaviour
 
     void FixedUpdate(){
         if(hit){
-            print("Enemy Normal: "+ normalized_dir);
+            //print("Enemy Normal: "+ normalized_dir);
             enemy_rb.AddForce(-normalized_dir * 0.9f, ForceMode2D.Impulse);
-            Invoke("hitForceDelay", 0.2f);
+            Invoke("hitForceDelay", 0.1f);
             
         }else if(!hit){
             float xDir = transform.position.x - player.transform.position.x;
@@ -63,6 +62,6 @@ public class Enemy : MonoBehaviour
         //hit = true;
     }
     void OnTriggerStay2D(){
-        //hit = true;
+        hit = true;
     }
 }
