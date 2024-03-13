@@ -35,7 +35,7 @@ public class BulletScript : MonoBehaviour
     }
 
     void OnTriggerEnter2D(){
-        print("Collision");
+        //print("Collision");
         Destroy(enemy);
         Destroy(gameObject);
     }

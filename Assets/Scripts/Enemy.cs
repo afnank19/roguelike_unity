@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
+//NOTES: Enemies should not collide with each other, FIX needed
+    //2: Destroy() in shooting script sometimes randomly destroys not the intended enemy.
 public class Enemy : MonoBehaviour
 {
     private GameObject player;
@@ -61,7 +63,8 @@ public class Enemy : MonoBehaviour
         //print("Enemy Collided"+normalized_dir);
         //hit = true;
     }
-    void OnTriggerStay2D(){
-        hit = true;
+    void OnTriggerStay2D(Collider2D coll){
+        if(coll.gameObject.name != "Enemy(Clone)")
+            hit = true;
     }
 }

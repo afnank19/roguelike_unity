@@ -23,7 +23,7 @@ public class PlayerScript : MonoBehaviour
         impulseSource = GetComponent<CinemachineImpulseSource>();
         //temporary for testing
 
-        Instantiate(enemy, new Vector3(3.81f, 1.67f, 0), Quaternion.identity);
+        //Instantiate(enemy, new Vector3(3.81f, 1.67f, 0), Quaternion.identity);
     }
 
     void Update()
@@ -53,7 +53,7 @@ public class PlayerScript : MonoBehaviour
 
     void FixedUpdate(){
         if(hit){
-            print("In player Normal: "+ knockback);
+            //print("In player Normal: "+ knockback);
             player_rb.AddForce(knockback * 1.15f, ForceMode2D.Impulse);
             Invoke("hitForceDelay", 0.15f);
             
