@@ -8,19 +8,25 @@ public class EnemySpawner : MonoBehaviour
 
     //DONOT hardcode this, find a more generic solution
     private float XDistPositive = 6.8f, YDistPositive = 3.8f;
+    private int enemyQty = 1;
     void Start()
     {
         //Spawns the enemies with the correct parameters after every minute.
-        InvokeRepeating("SpawnHelper",1, 15);
+        InvokeRepeating("SpawnHelper",1, 7);
+        InvokeRepeating("IncreaseDifficulty", 1, 30);
+
+        //RECOMENDATION: Tweak spawner difficulty settings
     }
 
     void Update()
     {
         
     }
-
+    void IncreaseDifficulty(){
+        enemyQty++;
+    }
     void SpawnHelper(){
-       Spawn(2);
+       Spawn(enemyQty);
     }
     void Spawn (int enemyCount) {
         int[] quadrantChange = {-1, 1};

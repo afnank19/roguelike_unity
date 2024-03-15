@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 
 public class BulletScript : MonoBehaviour
@@ -34,9 +35,11 @@ public class BulletScript : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter2D(){
+    void OnTriggerEnter2D(UnityEngine.Collider2D coll)
+    {
         //print("Collision");
-        Destroy(enemy);
-        Destroy(gameObject);
+        //Destroy(enemy);
+        if (coll.gameObject.name != "Player")
+            Destroy(gameObject);
     }
 }

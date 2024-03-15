@@ -4,7 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 
 //NOTES: Enemies should not collide with each other, FIX needed
-    //2: Destroy() in shooting script sometimes randomly destroys not the intended enemy.
+    //2: Destroy() in shooting script sometimes randomly destroys not the intended enemy. @fixed
 public class Enemy : MonoBehaviour
 {
     private GameObject player;
@@ -57,14 +57,17 @@ public class Enemy : MonoBehaviour
         hit = false;
     }
 
-    void OnTriggerEnter2D(){
+    void OnTriggerEnter2D (Collider2D coll) {
         
         //enemy_rb.velocity = new Vector3(5,5,5);
         //print("Enemy Collided"+normalized_dir);
         //hit = true;
+        if (coll.gameObject.name == "Bullet(Clone)") {
+            Destroy(gameObject);
+        }
     }
-    void OnTriggerStay2D(Collider2D coll){
-        if(coll.gameObject.name != "Enemy(Clone)")
+    void OnTriggerStay2D (Collider2D coll) {
+        if (coll.gameObject.name != "Enemy(Clone)")
             hit = true;
     }
 }

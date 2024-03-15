@@ -13,8 +13,9 @@ public class PlayerScript : MonoBehaviour
     public GameObject enemy;
     public Enemy enemyRef;
     int health = 10;
-    bool hit = false;
-    bool canAttack = true;
+    private bool hit = false;
+    private bool canAttack = true;
+    private bool canShake = true;
     Vector2 knockback;
     private CinemachineImpulseSource impulseSource;
 
@@ -82,21 +83,32 @@ public class PlayerScript : MonoBehaviour
     void DamageHealth(){
         health -= 5;
     }
-    void OnTriggerEnter2D(){
-        CameraShakeManager.instance.CameraShake(impulseSource);
+    void OnTriggerEnter2D(Collider2D coll){
+         if(coll.gameObject.name != "Bullet(Clone)"){
+            if (canShake) {
+                CameraShakeManager.instance.CameraShake(impulseSource);
+                canShake = false;
+                Invoke("canShakeDelay", 1);
+            }
+         }
+    }
+    void canShakeDelay(){
+        canShake = true;
     }
     void OnTriggerStay2D(Collider2D coll){
-        if(canAttack){
-            DamageHealth();
-            canAttack = false;
-            Invoke("attackDelay", 1);
+        if(coll.gameObject.name != "Bullet(Clone)"){
+            if(canAttack){
+                DamageHealth();
+                canAttack = false;
+                Invoke("attackDelay", 1);
+            }
+            
+            //Calculates the direction for the knockback
+            Vector2 dir = (coll.transform.position - transform.position).normalized;
+
+            knockback = -dir;
+
+            hit = true;
         }
-        
-        //Calculates the direction for the knockback
-        Vector2 dir = (coll.transform.position - transform.position).normalized;
-
-        knockback = -dir;
-
-        hit = true;
    }
 }

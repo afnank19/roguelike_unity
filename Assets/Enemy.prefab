@@ -129,6 +129,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemy_rb: {fileID: 1575606056624075809}
   enemy_sr: {fileID: 7313702755264844582}
+  normalized_dir: {x: 0, y: 0, z: 0}
   health: 10
 --- !u!61 &5358993328862804918
 BoxCollider2D:
@@ -162,7 +163,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 0.1}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
