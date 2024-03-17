@@ -44,10 +44,14 @@ public class Shooting : MonoBehaviour
             CameraShakeManager.instance.CameraShake(impulseSource);
             canFire = false;
             Instantiate(bullet, bulletTransform.position, Quaternion.identity);
+            //Invoke("SecondBulletDelay", 0.1f);
+            
             //figure out a way to reverse the velocity vector when instantiating the second bullet
         }
 
         Vector2 screenPos = cam.WorldToScreenPoint(transform.position);
-
+    }
+    void SecondBulletDelay(){
+        Instantiate(bullet, bulletTransform.position, Quaternion.identity);
     }
 }

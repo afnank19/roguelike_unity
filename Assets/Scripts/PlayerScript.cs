@@ -18,6 +18,7 @@ public class PlayerScript : MonoBehaviour
     private bool canShake = true;
     Vector2 knockback;
     private CinemachineImpulseSource impulseSource;
+    public Animator animator;
 
     void Start()
     {
@@ -54,7 +55,6 @@ public class PlayerScript : MonoBehaviour
 
     void FixedUpdate(){
         if(hit){
-            //print("In player Normal: "+ knockback);
             player_rb.AddForce(knockback * 1.15f, ForceMode2D.Impulse);
             Invoke("hitForceDelay", 0.15f);
             
@@ -97,6 +97,9 @@ public class PlayerScript : MonoBehaviour
     }
     void OnTriggerStay2D(Collider2D coll){
         if(coll.gameObject.name != "Bullet(Clone)"){
+            animator.SetBool("playerBeingHit", true);
+            Invoke("resetHitAnimation", 0.2f);
+
             if(canAttack){
                 DamageHealth();
                 canAttack = false;
@@ -110,5 +113,8 @@ public class PlayerScript : MonoBehaviour
 
             hit = true;
         }
+   }
+   void resetHitAnimation(){
+        animator.SetBool("playerBeingHit", false);
    }
 }

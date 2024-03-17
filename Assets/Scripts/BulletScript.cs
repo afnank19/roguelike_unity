@@ -39,7 +39,7 @@ public class BulletScript : MonoBehaviour
     {
         //print("Collision");
         //Destroy(enemy);
-        if (coll.gameObject.name != "Player")
+        if (coll.gameObject.name != "Player" || coll.gameObject.name != "Bullet(Clone)")
             Destroy(gameObject);
     }
 }

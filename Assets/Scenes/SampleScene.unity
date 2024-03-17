@@ -2466,7 +2466,7 @@ MonoBehaviour:
   bullet: {fileID: 8055440547297190831, guid: 5aa619da25696834aba964d8c5270b3e, type: 3}
   bulletTransform: {fileID: 81458752}
   canFire: 1
-  timeBwFiring: 1
+  timeBwFiring: 0.5
 --- !u!114 &1493724604
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2638,6 +2638,7 @@ MonoBehaviour:
   player_sr: {fileID: 1676630381}
   enemy: {fileID: 9119182023681611902, guid: 192510290bdfe374d8bdd591217141db, type: 3}
   enemyRef: {fileID: 1197682352233218917, guid: 192510290bdfe374d8bdd591217141db, type: 3}
+  animator: {fileID: 1676630384}
 --- !u!212 &1676630381
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2736,7 +2737,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.03, y: 0}

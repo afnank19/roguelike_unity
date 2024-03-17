@@ -12,10 +12,9 @@ public class Enemy : MonoBehaviour
     public SpriteRenderer enemy_sr;
     const float SPEED = 2;
     public Vector3 normalized_dir;
-    public int health = 10;
-
+    private int health = 10;
     bool hit = false;
-
+    public Animator animator;
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
@@ -25,7 +24,9 @@ public class Enemy : MonoBehaviour
     void Update()
     {
 
-        
+        if(health <= 0){
+            Destroy(gameObject);
+        }
 
     }
 
@@ -56,6 +57,9 @@ public class Enemy : MonoBehaviour
     void hitForceDelay(){
         hit = false;
     }
+    void Damage(){
+        health -= 5;
+    }
 
     void OnTriggerEnter2D (Collider2D coll) {
         
@@ -63,11 +67,17 @@ public class Enemy : MonoBehaviour
         //print("Enemy Collided"+normalized_dir);
         //hit = true;
         if (coll.gameObject.name == "Bullet(Clone)") {
-            Destroy(gameObject);
+            animator.SetBool("enemyBeingHit", true);
+            Invoke("resetHitAnimation", 0.2f);
+            Damage();
         }
     }
+    private void resetHitAnimation(){
+        animator.SetBool("enemyBeingHit", false);
+   }
     void OnTriggerStay2D (Collider2D coll) {
         if (coll.gameObject.name != "Enemy(Clone)")
             hit = true;
     }
+
 }
