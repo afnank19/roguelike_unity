@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
+using TMPro;
 public class PlayerScript : MonoBehaviour
 {
     public Rigidbody2D player_rb;
@@ -12,13 +13,15 @@ public class PlayerScript : MonoBehaviour
     public SpriteRenderer player_sr;
     public GameObject enemy;
     public Enemy enemyRef;
-    int health = 10;
+    private const int MAXHEALTH = 50;
+    private int health = MAXHEALTH;
     private bool hit = false;
     private bool canAttack = true;
     private bool canShake = true;
     Vector2 knockback;
     private CinemachineImpulseSource impulseSource;
     public Animator animator;
+    public TextMeshProUGUI text;
 
     void Start()
     {
@@ -40,6 +43,7 @@ public class PlayerScript : MonoBehaviour
             player_sr.flipX = false;
         }
 
+        text.SetText("Health: "+health);
         checkGameOver();
         
 
@@ -49,7 +53,7 @@ public class PlayerScript : MonoBehaviour
     {
         if(health <= 0){
             print("Game Over");
-            health = 10;
+            health = MAXHEALTH;
         }
     }
 
@@ -103,7 +107,7 @@ public class PlayerScript : MonoBehaviour
             if(canAttack){
                 DamageHealth();
                 canAttack = false;
-                Invoke("attackDelay", 1);
+                Invoke("attackDelay", 0.2f);
             }
             
             //Calculates the direction for the knockback
