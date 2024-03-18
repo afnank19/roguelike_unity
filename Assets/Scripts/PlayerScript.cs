@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 using TMPro;
+using UnityEngine.SceneManagement;
 public class PlayerScript : MonoBehaviour
 {
     public Rigidbody2D player_rb;
@@ -53,6 +54,7 @@ public class PlayerScript : MonoBehaviour
     {
         if(health <= 0){
             print("Game Over");
+            SceneManager.LoadScene("Game Over");
             health = MAXHEALTH;
         }
     }
