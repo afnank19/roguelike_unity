@@ -9,7 +9,7 @@ public class BulletScript : MonoBehaviour
     Vector3 mousePos;
     private Camera cam;
     public Rigidbody2D bullet_rb;
-    public float force;
+    public float force = 5.5f;
     public GameObject enemy;
     // Start is called before the first frame update
     void Start()

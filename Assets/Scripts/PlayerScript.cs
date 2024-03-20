@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 public class PlayerScript : MonoBehaviour
 {
     public Rigidbody2D player_rb;
-    public float moveSpeed = 5f;
+    public float moveSpeed = 1.5f;
     Vector2 movement;
     public Camera cam;
     public SpriteRenderer player_sr;
@@ -66,6 +66,12 @@ public class PlayerScript : MonoBehaviour
             
         }else if(!hit){
             player_rb.velocity = new Vector2(movement.x * moveSpeed, movement.y * moveSpeed);
+
+            if(player_rb.velocity.x != 0 || player_rb.velocity.y != 0){
+                animator.SetFloat("playerMoveSpeed", 1f);
+            }else{
+                animator.SetFloat("playerMoveSpeed", 0);
+            }
 
             Vector2 screenPos = cam.WorldToScreenPoint(transform.position);
 
