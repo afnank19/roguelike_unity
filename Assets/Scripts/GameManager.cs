@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public GameObject PowerLabel;
+    public GameObject levelUpOptions;
     // Start is called before the first frame update
     void Start()
     {
-        PowerLabel.SetActive(false);
+        levelUpOptions.SetActive(false);
     }
 
     // Update is called once per frame
@@ -17,11 +17,11 @@ public class GameManager : MonoBehaviour
         //This is for testing the level up menu, in future this should be replaced by the Pause Menu
         //and other game management requirements
         if(Input.GetKeyDown(KeyCode.P)){
-            PowerLabel.SetActive(true);
+            levelUpOptions.SetActive(true);
             Time.timeScale = 0f;
         }
         if(Input.GetKeyDown(KeyCode.L)){
-            PowerLabel.SetActive(false);
+            levelUpOptions.SetActive(false);
             Time.timeScale = 1f;
         }
     }

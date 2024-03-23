@@ -152,7 +152,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df5692ed70518cd4e87d0f2aaf9a71e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletObj: {fileID: 0}
   bullet: {fileID: 1275360831930061658, guid: 5aa619da25696834aba964d8c5270b3e, type: 3}
   PowerUpCanvas: {fileID: 695250109}
 --- !u!4 &72543195
@@ -776,8 +775,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190335
-  m_fontColor: {r: 1, g: 0, b: 0, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -2699,7 +2698,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -218.1, y: 0}
-  m_SizeDelta: {x: 96.6, y: 96.7}
+  m_SizeDelta: {x: 127.6, y: 96.7}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &763803089
 MonoBehaviour:
@@ -2777,8 +2776,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 67d1c8d99cd8d5641b5837ac08e9932c, type: 3}
-  m_Type: 0
+  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -3089,8 +3088,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1288462675
+  m_SortingLayer: 1
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 2cad0799da942e14aa1ab027a3f20f3e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
