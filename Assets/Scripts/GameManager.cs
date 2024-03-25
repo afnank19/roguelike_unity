@@ -5,6 +5,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public GameObject levelUpOptions;
+    public LevelUpButtonMngr levelUpButtonMngr;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,6 +18,7 @@ public class GameManager : MonoBehaviour
         //This is for testing the level up menu, in future this should be replaced by the Pause Menu
         //and other game management requirements
         if(Input.GetKeyDown(KeyCode.P)){
+            levelUpButtonMngr.setImages();
             levelUpOptions.SetActive(true);
             Time.timeScale = 0f;
         }
