@@ -131,6 +131,7 @@ MonoBehaviour:
   enemy_sr: {fileID: 7313702755264844582}
   normalized_dir: {x: 0, y: 0, z: 0}
   animator: {fileID: 227322086797942262}
+  exp: {fileID: 2790595748612045718, guid: ed19b1d526304ba45870af41c3d14232, type: 3}
 --- !u!61 &5358993328862804918
 BoxCollider2D:
   m_ObjectHideFlags: 0

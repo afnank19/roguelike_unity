@@ -15,6 +15,8 @@ public class Enemy : MonoBehaviour
     private int health = 10;
     bool hit = false;
     public Animator animator;
+    
+    public GameObject exp;
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
@@ -26,6 +28,7 @@ public class Enemy : MonoBehaviour
 
         if(health <= 0){
             Destroy(gameObject);
+            Instantiate(exp, transform.position, Quaternion.identity);
         }
 
     }
@@ -66,7 +69,7 @@ public class Enemy : MonoBehaviour
         //enemy_rb.velocity = new Vector3(5,5,5);
         //print("Enemy Collided"+normalized_dir);
         //hit = true;
-        if (coll.gameObject.name == "Bullet(Clone)") {
+        if (coll.gameObject.name == "Bullet(Clone)"  && coll.gameObject.name != "Experience(Clone)") {
             animator.SetBool("enemyBeingHit", true);
             Invoke("resetHitAnimation", 0.2f);
             Damage();
@@ -76,7 +79,7 @@ public class Enemy : MonoBehaviour
         animator.SetBool("enemyBeingHit", false);
    }
     void OnTriggerStay2D (Collider2D coll) {
-        if (coll.gameObject.name != "Enemy(Clone)")
+        if (coll.gameObject.name != "Enemy(Clone)"  && coll.gameObject.name != "Experience(Clone)")
             hit = true;
     }
 

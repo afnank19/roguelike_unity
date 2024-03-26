@@ -24,6 +24,9 @@ public class PlayerScript : MonoBehaviour
     public Animator animator;
     public TextMeshProUGUI text;
 
+    public Experience experience;
+    public GameObject exp;
+
     void Start()
     {
         impulseSource = GetComponent<CinemachineImpulseSource>();
@@ -96,19 +99,28 @@ public class PlayerScript : MonoBehaviour
         health -= 5;
     }
     void OnTriggerEnter2D(Collider2D coll){
-         if(coll.gameObject.name != "Bullet(Clone)"){
+         if (coll.gameObject.name != "Bullet(Clone)" && coll.gameObject.name != "Experience(Clone)"){ 
             if (canShake) {
                 CameraShakeManager.instance.CameraShake(impulseSource);
                 canShake = false;
                 Invoke("canShakeDelay", 1);
             }
          }
+
+        //check Experience
+         if (coll.gameObject.name == "Experience(Clone)") {
+            print("collided with experience");
+            experience.setPlayerExperience();
+            experience.checkLevelUp();
+            //Destroy(enemyRef.exp);
+         }
     }
     void canShakeDelay(){
         canShake = true;
     }
     void OnTriggerStay2D(Collider2D coll){
-        if(coll.gameObject.name != "Bullet(Clone)"){
+        print(coll.gameObject.name);
+        if(coll.gameObject.name != "Bullet(Clone)" && coll.gameObject.name != "Experience(Clone)"){
             animator.SetBool("playerBeingHit", true);
             Invoke("resetHitAnimation", 0.2f);
 
