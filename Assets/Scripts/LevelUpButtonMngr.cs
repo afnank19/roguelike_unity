@@ -45,6 +45,7 @@ public class LevelUpButtonMngr : MonoBehaviour
     private void setAbilities (string prompt) {
         if(prompt == "strength"){
             //increase damage
+            bullet.SetBulletDamage(5);
             print("more Strength");
         }
 

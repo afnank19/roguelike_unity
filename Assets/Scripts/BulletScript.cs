@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
@@ -11,6 +12,9 @@ public class BulletScript : MonoBehaviour
     public Rigidbody2D bullet_rb;
     public float force = 5.5f;
     public GameObject enemy;
+    public GameObject explosion_effect;
+
+    public int BulletDamage = 5;
     // Start is called before the first frame update
     void Start()
     {
@@ -39,8 +43,17 @@ public class BulletScript : MonoBehaviour
     {
         //print("Collision");
         //Destroy(enemy);
-        print(coll.gameObject.name);
-        if (coll.gameObject.name == "Enemy(Clone)")
+        //print(coll.gameObject.name);
+        if (coll.gameObject.name == "Enemy(Clone)") {
             Destroy(gameObject);
+            Instantiate(explosion_effect, transform.position, Quaternion.identity);
+        }
+    }
+
+    public int GetBulletDamage(){
+        return BulletDamage;
+    }
+    public void SetBulletDamage(int new_damage){
+        BulletDamage += new_damage;
     }
 }

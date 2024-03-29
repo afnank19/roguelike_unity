@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 
 //NOTES: Enemies should not collide with each other, FIX needed
@@ -15,11 +16,14 @@ public class Enemy : MonoBehaviour
     private int health = 10;
     bool hit = false;
     public Animator animator;
-    
     public GameObject exp;
+
+    public GameObject bullet;
+    private BulletScript bulletScript;
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        bulletScript = bullet.GetComponent<BulletScript>();
     }
 
 
@@ -61,7 +65,9 @@ public class Enemy : MonoBehaviour
         hit = false;
     }
     void Damage(){
-        health -= 5;
+        print(bulletScript.GetBulletDamage());
+        print("5");
+        health -= bulletScript.GetBulletDamage();
     }
 
     void OnTriggerEnter2D (Collider2D coll) {
@@ -69,7 +75,7 @@ public class Enemy : MonoBehaviour
         //enemy_rb.velocity = new Vector3(5,5,5);
         //print("Enemy Collided"+normalized_dir);
         //hit = true;
-        if (coll.gameObject.name == "Bullet(Clone)"  && coll.gameObject.name != "Experience(Clone)") {
+        if (coll.gameObject.name == "Bullet(Clone)") {
             animator.SetBool("enemyBeingHit", true);
             Invoke("resetHitAnimation", 0.2f);
             Damage();
@@ -79,7 +85,7 @@ public class Enemy : MonoBehaviour
         animator.SetBool("enemyBeingHit", false);
    }
     void OnTriggerStay2D (Collider2D coll) {
-        if (coll.gameObject.name != "Enemy(Clone)"  && coll.gameObject.name != "Experience(Clone)")
+        if (coll.gameObject.name == "Bullet(Clone)")
             hit = true;
     }
 
