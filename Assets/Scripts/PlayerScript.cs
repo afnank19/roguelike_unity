@@ -23,13 +23,14 @@ public class PlayerScript : MonoBehaviour
     private CinemachineImpulseSource impulseSource;
     public Animator animator;
     public TextMeshProUGUI text;
-
     public Experience experience;
     public GameObject exp;
+    public BarUIHandler barUIHandler;
 
     void Start()
     {
         impulseSource = GetComponent<CinemachineImpulseSource>();
+        barUIHandler.initHealthSlider(health);
         //temporary for testing
 
         //Instantiate(enemy, new Vector3(3.81f, 1.67f, 0), Quaternion.identity);
@@ -46,8 +47,6 @@ public class PlayerScript : MonoBehaviour
         }else if(movement.x > 0){
             player_sr.flipX = false;
         }
-
-        text.SetText("Health: "+health);
         checkGameOver();
         
 
@@ -97,6 +96,7 @@ public class PlayerScript : MonoBehaviour
     }
     void DamageHealth(){
         health -= 5;
+        barUIHandler.SetHealthSlider(health);
     }
     void OnTriggerEnter2D(Collider2D coll){
          if (coll.gameObject.name != "Bullet(Clone)" && coll.gameObject.name != "Experience(Clone)"){ 
