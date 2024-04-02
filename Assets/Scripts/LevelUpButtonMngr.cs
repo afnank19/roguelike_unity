@@ -13,8 +13,10 @@ public class LevelUpButtonMngr : MonoBehaviour
     public Button option1, option2, option3;
     public Image option1Image, option2Image, option3Image;
     public Sprite[] testImage;
-
     public Shooting shooting;
+
+    [SerializeField]
+    TextMeshProUGUI description;
     // Start is called before the first frame update
     void Start()
     {
@@ -72,7 +74,28 @@ public class LevelUpButtonMngr : MonoBehaviour
         option3Image.sprite = testImage[2];
     }
 
+    public void HoverOp1(){
+        setDescription(option1Image.sprite.name);
+    }
+    public void HoverOp2(){
+        setDescription(option2Image.sprite.name);
+    }
+    public void HoverOp3(){
+        setDescription(option3Image.sprite.name);
+    }
 
+
+    void setDescription(string prompt){
+        if(prompt == "strength"){
+            description.SetText("Increase Damage");
+        }
+        if (prompt == "multi"){
+            description.SetText("Add more charges");
+        }
+        if (prompt == "speed") {
+            description.SetText("Increase charge speed");
+        }
+    }
     public static void Shuffle<Sprite>(Sprite[] array)
     {
         System.Random rng = new System.Random();
