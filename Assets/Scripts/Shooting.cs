@@ -14,6 +14,9 @@ public class Shooting : MonoBehaviour
     private float timer;
     public float timeBwFiring;
     private CinemachineImpulseSource impulseSource;
+
+    private int numberOfBullets = 1;
+    float timeBwBlts = 0.1f;
     // Start is called before the first frame update
     void Start()
     {
@@ -43,8 +46,14 @@ public class Shooting : MonoBehaviour
         {
             CameraShakeManager.instance.CameraShake(impulseSource);
             canFire = false;
+            timeBwBlts = 0.1f;
             Instantiate(bullet, bulletTransform.position, Quaternion.identity);
             //Invoke("SecondBulletDelay", 0.1f);
+
+            for(int i = 1; i < numberOfBullets; i++){
+                Invoke("SecondBulletDelay", timeBwBlts);
+                timeBwBlts += 0.1f;
+            }
             
             //figure out a way to reverse the velocity vector when instantiating the second bullet
         }
@@ -53,5 +62,9 @@ public class Shooting : MonoBehaviour
     }
     void SecondBulletDelay(){
         Instantiate(bullet, bulletTransform.position, Quaternion.identity);
+    }
+
+    public void IncrementBullets(){
+        numberOfBullets++;
     }
 }

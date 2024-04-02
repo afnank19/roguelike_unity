@@ -32,7 +32,7 @@ public class EnemySpawner : MonoBehaviour
         int[] quadrantChange = {-1, 1};
 
         for (int i = 1; i <= enemyCount; i++) {
-            int selector = Random.Range(0,2);
+            int selector = Random.Range(0,4);
             int quadrantSelector = Random.Range(0,2);
 
             if (selector == 0) {
@@ -42,6 +42,14 @@ public class EnemySpawner : MonoBehaviour
             else if (selector == 1) {
                 float yPos = Random.Range(0f, YDistPositive+0.3f);
                 Instantiate(Enemy, new Vector3(XDistPositive, yPos * quadrantChange[quadrantSelector]), Quaternion.identity);
+            }
+            else if (selector == 2) {
+                float yPos = Random.Range(0f, YDistPositive+0.3f);
+                Instantiate(Enemy, new Vector3(-XDistPositive, yPos * quadrantChange[quadrantSelector]), Quaternion.identity);
+            }
+            else if (selector == 3) {
+                float xPos = Random.Range(0f, 7f);
+                Instantiate(Enemy, new Vector3(xPos * quadrantChange[quadrantSelector], -YDistPositive), Quaternion.identity);
             }
         }
     }

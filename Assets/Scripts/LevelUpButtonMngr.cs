@@ -10,10 +10,11 @@ public class LevelUpButtonMngr : MonoBehaviour
     //public GameObject bulletObj;
     public BulletScript bullet;
     public GameObject PowerUpCanvas;
-
     public Button option1, option2, option3;
     public Image option1Image, option2Image, option3Image;
     public Sprite[] testImage;
+
+    public Shooting shooting;
     // Start is called before the first frame update
     void Start()
     {
@@ -52,6 +53,7 @@ public class LevelUpButtonMngr : MonoBehaviour
         if (prompt == "multi"){
             //add bullets
             print("added bullets");
+            shooting.IncrementBullets();
         }
         if (prompt == "speed") {
             //increase projectile speed
