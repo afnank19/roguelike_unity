@@ -28,6 +28,9 @@ public class EnemySpawner : MonoBehaviour
     void SpawnHelper(){
        Spawn(enemyQty);
     }
+    public void IncreaseEnemyQty(){
+        enemyQty += 5;
+    }
     void Spawn (int enemyCount) {
         int[] quadrantChange = {-1, 1};
 

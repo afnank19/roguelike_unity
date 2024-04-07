@@ -13,8 +13,8 @@ public class BulletScript : MonoBehaviour
     public float force = 5.5f;
     public GameObject enemy;
     public GameObject explosion_effect;
-
-    public int BulletDamage = 5;
+    private const int INIT_BULLET_DMG = 5;
+    public int BulletDamage = INIT_BULLET_DMG;
     // Start is called before the first frame update
     void Start()
     {
@@ -54,6 +54,6 @@ public class BulletScript : MonoBehaviour
         return BulletDamage;
     }
     public void SetBulletDamage(int new_damage){
-        BulletDamage += new_damage;
+        BulletDamage += 5;
     }
 }

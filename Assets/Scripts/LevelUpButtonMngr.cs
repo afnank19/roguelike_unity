@@ -14,6 +14,9 @@ public class LevelUpButtonMngr : MonoBehaviour
     public Image option1Image, option2Image, option3Image;
     public Sprite[] testImage;
     public Shooting shooting;
+    public PlayerScript player;
+    public Enemy enemy;
+    public EnemySpawner enemySpawner;
 
     [SerializeField]
     TextMeshProUGUI description;
@@ -30,10 +33,10 @@ public class LevelUpButtonMngr : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
+    // void Update()
+    // {
         
-    }
+    // }
 
     public void Option1 () {
         setAbilities(option1Image.sprite.name);
@@ -46,20 +49,49 @@ public class LevelUpButtonMngr : MonoBehaviour
     }
 
     private void setAbilities (string prompt) {
+        int curse_rand = UnityEngine.Random.Range(0,2);
+
         if(prompt == "strength"){
             //increase damage
             bullet.SetBulletDamage(5);
             print("more Strength");
+            player.DamageOnAbility();
         }
 
         if (prompt == "multi"){
             //add bullets
-            print("added bullets");
             shooting.IncrementBullets();
+            player.DamageOnAbility();
         }
         if (prompt == "speed") {
             //increase projectile speed
             bullet.force = 10f;
+            player.DamageOnAbility();
+        }
+        if(prompt == "curse1"){
+            if(curse_rand == 0){
+                player.HealOnCurse();
+            }
+            else{
+                print("increased enemy speed");
+                enemy.speed_mult += 0.15f;
+            }
+        }
+        if(prompt == "curse2"){
+            if(curse_rand == 0){
+                player.HealOnCurse();
+            }
+            else{
+                player.dmg += 5;
+            }
+        }
+        if(prompt == "curse3"){
+            if(curse_rand == 0){
+                player.HealOnCurse();
+            }
+            else{
+                enemySpawner.IncreaseEnemyQty();
+            }
         }
 
         PowerUpCanvas.SetActive(false);
@@ -94,6 +126,15 @@ public class LevelUpButtonMngr : MonoBehaviour
         }
         if (prompt == "speed") {
             description.SetText("Increase charge speed");
+        }
+        if(prompt == "curse1"){
+
+        }
+        if(prompt == "curse2"){
+            
+        }
+        if(prompt == "curse3"){
+            
         }
     }
     public static void Shuffle<Sprite>(Sprite[] array)

@@ -26,7 +26,7 @@ public class PlayerScript : MonoBehaviour
     public Experience experience;
     public GameObject exp;
     public BarUIHandler barUIHandler;
-
+    public int dmg = 5;
     void Start()
     {
         impulseSource = GetComponent<CinemachineImpulseSource>();
@@ -57,6 +57,9 @@ public class PlayerScript : MonoBehaviour
         if(health <= 0){
             print("Game Over");
             SceneManager.LoadScene("Game Over");
+            health = MAXHEALTH;
+        }
+        if(health > 50){
             health = MAXHEALTH;
         }
     }
@@ -95,7 +98,17 @@ public class PlayerScript : MonoBehaviour
         canAttack = true;
     }
     void DamageHealth(){
-        health -= 5;
+        health -= dmg;
+        barUIHandler.SetHealthSlider(health);
+    }
+    public void DamageOnAbility(){
+        int randDmg = UnityEngine.Random.Range(5, 16);
+        health -= randDmg;
+        barUIHandler.SetHealthSlider(health);
+    }
+    public void HealOnCurse(){
+        int randHeal = UnityEngine.Random.Range(5, 16);
+        health += randHeal;
         barUIHandler.SetHealthSlider(health);
     }
     void OnTriggerEnter2D(Collider2D coll){

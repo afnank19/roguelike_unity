@@ -17,13 +17,13 @@ public class Enemy : MonoBehaviour
     bool hit = false;
     public Animator animator;
     public GameObject exp;
-
     public GameObject bullet;
-    private BulletScript bulletScript;
+    public BulletScript bulletScript;
+    public float speed_mult = 1;
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
-        bulletScript = bullet.GetComponent<BulletScript>();
+        //bulletScript = bullet.GetComponent<BulletScript>();
     }
 
 
@@ -56,9 +56,14 @@ public class Enemy : MonoBehaviour
                 enemy_sr.flipX = true;
             }
 
-            enemy_rb.velocity = normalized_dir*SPEED;
+            enemy_rb.velocity = SPEED * speed_mult * normalized_dir;
         }
 
+    }
+
+    public void incrementSpeedMult(){
+        speed_mult = speed_mult + 1f;
+        print(speed_mult);
     }
 
     void hitForceDelay(){
@@ -66,7 +71,7 @@ public class Enemy : MonoBehaviour
     }
     void Damage(){
         print(bulletScript.GetBulletDamage());
-        print("5");
+        print(bulletScript.BulletDamage);
         health -= bulletScript.GetBulletDamage();
     }
 
