@@ -15,6 +15,8 @@ public class Shooting : MonoBehaviour
     public float timeBwFiring;
     private CinemachineImpulseSource impulseSource;
 
+    [SerializeField]
+    AudioSource bulletAS;
     private int numberOfBullets = 1;
     float timeBwBlts = 0.1f;
     // Start is called before the first frame update
@@ -45,6 +47,7 @@ public class Shooting : MonoBehaviour
         if(Input.GetMouseButton(0) && canFire)
         {
             CameraShakeManager.instance.CameraShake(impulseSource);
+            bulletAS.Play();
             canFire = false;
             timeBwBlts = 0.1f;
             Instantiate(bullet, bulletTransform.position, Quaternion.identity);

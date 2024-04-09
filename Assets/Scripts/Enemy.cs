@@ -9,6 +9,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     private GameObject player;
+    private PlayerScript playerScript;
     public Rigidbody2D enemy_rb;
     public SpriteRenderer enemy_sr;
     const float SPEED = 2;
@@ -20,6 +21,7 @@ public class Enemy : MonoBehaviour
     public GameObject bullet;
     public BulletScript bulletScript;
     public float speed_mult = 1;
+
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
@@ -32,6 +34,8 @@ public class Enemy : MonoBehaviour
 
         if(health <= 0){
             Destroy(gameObject);
+            playerScript = player.GetComponent<PlayerScript>();
+            playerScript.EnemyDeathSound();
             Instantiate(exp, transform.position, Quaternion.identity);
         }
 

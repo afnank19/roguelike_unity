@@ -17,6 +17,7 @@ public class LevelUpButtonMngr : MonoBehaviour
     public PlayerScript player;
     public Enemy enemy;
     public EnemySpawner enemySpawner;
+    public AudioSource cardHover;
 
     [SerializeField]
     TextMeshProUGUI description;
@@ -106,36 +107,54 @@ public class LevelUpButtonMngr : MonoBehaviour
         option3Image.sprite = testImage[2];
     }
 
+
     public void HoverOp1(){
         setDescription(option1Image.sprite.name);
+        // RectTransform oTransform = option1.GetComponent<RectTransform>();
+        // oTransform.localScale = new Vector3(1.1f,1.1f);
+        option1.transform.localScale = new Vector3(1.1f, 1.1f);
     }
     public void HoverOp2(){
         setDescription(option2Image.sprite.name);
+        option2.transform.localScale = new Vector3(1.1f, 1.1f);
     }
     public void HoverOp3(){
         setDescription(option3Image.sprite.name);
+        option3.transform.localScale = new Vector3(1.1f, 1.1f);
+    }
+
+    public void HoverExit(){
+        option1.transform.localScale = new Vector3(1,1);
+        option2.transform.localScale = new Vector3(1,1);
+        option3.transform.localScale = new Vector3(1,1);
     }
 
 
     void setDescription(string prompt){
+        cardHover.Play();
         if(prompt == "strength"){
-            description.SetText("Increase Damage");
+            description.SetText("SACRIFICE: Give up health for increased damage");
         }
         if (prompt == "multi"){
-            description.SetText("Add more charges");
+            description.SetText("SACRIFICE: Give up health to add more charges");
         }
         if (prompt == "speed") {
-            description.SetText("Increase charge speed");
+            description.SetText("SACRIFICE: Give up health for increased charge speed");
         }
         if(prompt == "curse1"){
-
+            description.SetText("CURSED: May increase health or increase enemy speed");
         }
         if(prompt == "curse2"){
-            
+            description.SetText("CURSED: May increase health or increase enemy damage");
         }
         if(prompt == "curse3"){
-            
+            description.SetText("CURSED: May increase health or increase enemy quantity");
         }
+    }
+
+    public void SkipLevelUp(){
+        PowerUpCanvas.SetActive(false);
+        Time.timeScale = 1f;
     }
     public static void Shuffle<Sprite>(Sprite[] array)
     {

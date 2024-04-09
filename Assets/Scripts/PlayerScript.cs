@@ -27,6 +27,9 @@ public class PlayerScript : MonoBehaviour
     public GameObject exp;
     public BarUIHandler barUIHandler;
     public int dmg = 5;
+
+    [SerializeField]
+    AudioSource enemyDeath_AS;
     void Start()
     {
         impulseSource = GetComponent<CinemachineImpulseSource>();
@@ -56,7 +59,7 @@ public class PlayerScript : MonoBehaviour
     {
         if(health <= 0){
             print("Game Over");
-            SceneManager.LoadScene("Game Over");
+            SceneManager.LoadScene("Main Menu");
             health = MAXHEALTH;
         }
         if(health > 50){
@@ -153,5 +156,9 @@ public class PlayerScript : MonoBehaviour
    }
    void resetHitAnimation(){
         animator.SetBool("playerBeingHit", false);
+   }
+
+   public void EnemyDeathSound(){
+        enemyDeath_AS.Play();
    }
 }

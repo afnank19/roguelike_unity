@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -10,6 +11,11 @@ public class Experience : MonoBehaviour
     private int level_threshold = 1;
     public LevelUpButtonMngr levelUpButtonMngr;
     public GameObject levelUpOptions;
+
+    [SerializeField]
+    TextMeshProUGUI exp_label;
+
+    private int player_level = 0;
 
     public ExpBar expBar;
     void Start()
@@ -26,7 +32,9 @@ public class Experience : MonoBehaviour
 
             level_threshold *= 2;
             player_experience = 0;
+            player_level++;
 
+            exp_label.SetText("Level: "+ player_level);
             expBar.LevelUpSliderReset(level_threshold);
         }
 
