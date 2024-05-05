@@ -30,7 +30,7 @@ public class Experience : MonoBehaviour
             levelUpOptions.SetActive(true);
             Time.timeScale = 0f;
 
-            level_threshold = level_threshold * 3 / 2;
+            level_threshold = level_threshold + 2;
             player_experience = 0;
             player_level++;
 

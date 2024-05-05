@@ -70,12 +70,12 @@ public class LevelUpButtonMngr : MonoBehaviour
             player.DamageOnAbility();
         }
         if(prompt == "curse1"){
-                player.HealOnCurse(5);
+                player.HealOnCurse(10);
                 print("increased enemy speed");
                 enemy.speed_mult += 0.15f;
         }
         if(prompt == "curse2"){
-                player.HealOnCurse(5);
+                player.HealOnCurse(10);
                 player.dmg += 5;
         }
         if(prompt == "curse3"){
