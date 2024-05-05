@@ -109,9 +109,9 @@ public class PlayerScript : MonoBehaviour
         health -= randDmg;
         barUIHandler.SetHealthSlider(health);
     }
-    public void HealOnCurse(){
+    public void HealOnCurse(int healing){
         int randHeal = UnityEngine.Random.Range(5, 16);
-        health += randHeal;
+        health += healing;
         barUIHandler.SetHealthSlider(health);
     }
     void OnTriggerEnter2D(Collider2D coll){

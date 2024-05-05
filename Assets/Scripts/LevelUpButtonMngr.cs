@@ -70,29 +70,17 @@ public class LevelUpButtonMngr : MonoBehaviour
             player.DamageOnAbility();
         }
         if(prompt == "curse1"){
-            if(curse_rand == 0){
-                player.HealOnCurse();
-            }
-            else{
+                player.HealOnCurse(5);
                 print("increased enemy speed");
                 enemy.speed_mult += 0.15f;
-            }
         }
         if(prompt == "curse2"){
-            if(curse_rand == 0){
-                player.HealOnCurse();
-            }
-            else{
+                player.HealOnCurse(5);
                 player.dmg += 5;
-            }
         }
         if(prompt == "curse3"){
-            if(curse_rand == 0){
-                player.HealOnCurse();
-            }
-            else{
+                player.HealOnCurse(20);
                 enemySpawner.IncreaseEnemyQty();
-            }
         }
 
         PowerUpCanvas.SetActive(false);
@@ -142,13 +130,13 @@ public class LevelUpButtonMngr : MonoBehaviour
             description.SetText("SACRIFICE: Give up health for increased charge speed");
         }
         if(prompt == "curse1"){
-            description.SetText("CURSED: May increase health or increase enemy speed");
+            description.SetText("CURSED: Returns health but increases enemy speed");
         }
         if(prompt == "curse2"){
-            description.SetText("CURSED: May increase health or increase enemy damage");
+            description.SetText("CURSED: Returns health but increases enemy damage");
         }
         if(prompt == "curse3"){
-            description.SetText("CURSED: May increase health or increase enemy quantity");
+            description.SetText("CURSED: Returns health but increases enemy quantity");
         }
     }
 

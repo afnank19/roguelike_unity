@@ -8,7 +8,7 @@ public class Experience : MonoBehaviour
 {
     // Start is called before the first frame update
     private int player_experience = 0;
-    private int level_threshold = 1;
+    private int level_threshold = 2;
     public LevelUpButtonMngr levelUpButtonMngr;
     public GameObject levelUpOptions;
 
@@ -30,7 +30,7 @@ public class Experience : MonoBehaviour
             levelUpOptions.SetActive(true);
             Time.timeScale = 0f;
 
-            level_threshold *= 2;
+            level_threshold = level_threshold * 3 / 2;
             player_experience = 0;
             player_level++;
 

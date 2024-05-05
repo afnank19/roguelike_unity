@@ -12,7 +12,7 @@ public class EnemySpawner : MonoBehaviour
     void Start()
     {
         //Spawns the enemies with the correct parameters after every minute.
-        InvokeRepeating("SpawnHelper",1, 7);
+        InvokeRepeating("SpawnHelper",1, 5);
         InvokeRepeating("IncreaseDifficulty", 1, 30);
 
         //RECOMENDATION: Tweak spawner difficulty settings
